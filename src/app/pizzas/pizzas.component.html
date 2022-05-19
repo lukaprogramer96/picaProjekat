@@ -1,0 +1,31 @@
+<div class="veliki-kontejner">
+    <div class="pice">
+        <div *ngFor="let p of apiPizzaList" class="pica" [style.display]="(pizzaService.vegeterian && p.vegetarian) || (pizzaService.discount && p.discount) || (!pizzaService.vegeterian && !pizzaService.discount) ? '' : 'none'">
+            
+            
+                <div class="slicica">
+                    <img src="assets/pizzas/images/{{p.picture}}" alt="{{ p.name }}">
+                </div>
+                <div class="info">
+                    <div class="tekst">
+                        <h3>{{ p.name}}</h3>
+                        <p>{{ p.description}}</p>
+                    </div>
+                        
+                        <div class="detalji">
+                        <strong class="price">{{ p.price}}$</strong>
+                        <strong class="rating">{{ p.grade}}</strong>
+                    </div>
+                        <div class="dugme">
+                        <button (click)="addToCart(p)">Add to Cart</button>
+                    </div>
+                </div>
+           
+           
+        </div>
+    </div>
+</div>
+
+
+
+<!--  *ngFor="let p of apiPizzaList" {{ p.name }} -->

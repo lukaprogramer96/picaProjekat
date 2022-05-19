@@ -1,0 +1,96 @@
+<div class="heder">
+    
+<div class="putanje">
+
+    <div class="levi">
+        <h2>Pizza Maca</h2>
+        <span [routerLink]="['pizzas']">Pizzas</span>
+    </div>
+
+<div class="desni">
+    <span [routerLink]="['']">Home</span>
+
+    <span [routerLink]="['about']">About</span>
+</div>    
+
+</div>
+
+<div class="ispodHedera">
+    <div class="prviCheckBox">
+      <input  type="checkbox" [(ngModel)]="pizzaService.discount" style="width: 20px; height: 20px;">
+      <label>Discount</label>
+    </div>
+    <div class="drugiCheckBox">
+        <input  type="checkbox" [(ngModel)]="pizzaService.vegeterian" style="width: 20px; height: 20px;">
+        <label>Vegeterian</label>
+      </div>
+
+      <div class="korpa">
+        
+        <i class="bi bi-cart4" (click)="open(content)" style="color: red; font-size: 50px; cursor: pointer;"></i>
+        <label *ngIf="pizzaService.pizzasInCart.length == 0">Your cart is empty</label>
+        <label *ngIf="pizzaService.pizzasInCart.length > 0">{{ pizzaService.pizzasInCart.length }}</label>
+      </div>
+    
+  </div>
+
+  <hr style="width: 100%; height: 2px; color: red; margin-top: 50px;">
+
+</div>
+
+<ng-template #content let-modal>
+  
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Cancel</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of pizzaService.pizzasInCart;let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ p.name }}</td>
+    <td>{{ p.price }}</td>
+    <i class="bi bi-x-circle" (click)="removeItem(p._id)"></i>  
+  </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Total: {{ totalNumber() }} $</h2>
+
+<form class="form-horizontal" [formGroup]="orderForm">
+  <div  class="form-group">
+    <label class="control-label col-sm-2">Adress</label>
+    
+    <div class="col-sm-10">
+      <input formControlName="adress" class="form-control" placeholder="Street name and number">
+      <p style="color: red;" *ngIf="adress?.errors?.['required']">Adress required!</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Apartment</label>
+    <div class="col-sm-10">
+      <input formControlName="apartment" class="form-control" placeholder="Floor and flat number">
+      <p style="color: red;" *ngIf="apartment?.errors?.['required']">Flat information required!</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Telephone</label>
+    <div class="col-sm-10">
+      <input formControlName="phoneNumber" class="form-control" placeholder="Telephone">
+      <p style="color: red;" *ngIf="phoneNumber?.errors?.['required']">Telephone number required!</p>
+    </div>
+  </div>
+<div class="dugmic-crveni">
+  <button (click)="saveOrder()">Order</button>
+</div>
+</form>
+
+</ng-template>
+
+<!--  [disabled]="orderForm.invalid" -->

@@ -1,0 +1,57 @@
+img {
+    height: 150px;
+    width: 150px;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.slicica {
+    width: 150px;
+    margin-right: 15px;
+}
+
+button {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    margin-left: 150px;
+    right: 0;
+}
+
+.pice {
+    margin-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.veliki-kontejner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+.pica {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+    margin: 30px;
+    width: 450px;   
+}
+
+.hr-pice {
+    margin-top: 10px;
+}
+
+.tekst {
+    display: flex;
+    flex-direction: column;
+}
+
+.detalji {
+    display: flex;
+    justify-content: space-between;
+}
